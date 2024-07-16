@@ -2,6 +2,8 @@ using API;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +19,15 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<DbInitializer>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:3000");
+                      });
+});
 
 var app = builder.Build();
 SeedDatabase();
@@ -50,6 +61,8 @@ app.MapGet("/weatherforecast", () =>
 .WithOpenApi();
 
 app.MapControllers();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.Run();
 
