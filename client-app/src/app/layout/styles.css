@@ -3,10 +3,12 @@ body {
 }
 
 .ui.inverted.top.fixed.menu {
-  background-image: linear-gradient(
+  background: linear-gradient(
     135deg,
-    rgb(24, 42, 115) 0%,
-    rgb(33, 138, 174) 69%,
-    rgb(32, 167, 172) 89%
+    rgba(24, 42, 115, 0.8) 0%,
+    rgba(33, 138, 174, 0.8) 69%,
+    rgba(32, 167, 172, 0.8) 89%
   ) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
