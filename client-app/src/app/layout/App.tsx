@@ -9,10 +9,12 @@ import ActivityDetails from "../../features/activities/details/ActivityDetails";
 
 function App() {
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   return (
     <>
-      <NavBar />
-      <Container style={{ marginTop: "7em" }}>
+      {!isHomePage && <NavBar />}
+      <Container style={{ marginTop: isHomePage ? "0" : "7em" }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/activities" element={<ActivityDashboard />} />
