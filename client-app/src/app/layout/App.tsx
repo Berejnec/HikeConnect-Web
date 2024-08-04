@@ -14,15 +14,22 @@ function App() {
   return (
     <>
       {!isHomePage && <NavBar />}
-      <Container style={{ marginTop: isHomePage ? "0" : "7em" }}>
+      {isHomePage && (
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/activities" element={<ActivityDashboard />} />
-          <Route path="/activities/:id" element={<ActivityDetails />} />
-          <Route path="/createActivity" element={<ActivityForm key={location.key} />} />
-          <Route path="/manage/:id" element={<ActivityForm key={location.key} />} />
+          <Route path="*" element={<div> Not Found or You do not have permission.</div>} />
         </Routes>
-      </Container>
+      )}
+      {!isHomePage && (
+        <Container style={{ marginTop: isHomePage ? "0" : "7em" }}>
+          <Routes>
+            <Route path="/activities" element={<ActivityDashboard />} />
+            <Route path="/activities/:id" element={<ActivityDetails />} />
+            <Route path="/createActivity" element={<ActivityForm key={location.key} />} />
+            <Route path="/manage/:id" element={<ActivityForm key={location.key} />} />
+          </Routes>
+        </Container>
+      )}
     </>
   );
 }
