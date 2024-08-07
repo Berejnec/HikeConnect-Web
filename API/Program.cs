@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Persistence;
 using AutoMapper;
 using API.Extensions;
+using FluentValidation;
+using API.Middleware;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -13,9 +15,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices(builder.Configuration);
 
+builder.Services.AddValidatorsFromAssemblyContaining<Create>();
+
 var app = builder.Build();
 SeedDatabase();
 // Configure the HTTP request pipeline.
+
+app.UseMiddleware<ExceptionMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

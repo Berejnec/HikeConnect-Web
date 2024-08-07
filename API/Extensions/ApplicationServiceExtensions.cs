@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Activities;
 using Application.Core;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -26,8 +28,9 @@ namespace API.Extensions
             });
 
             services.AddControllers();
-
-            services.AddScoped<DbInitializer>();
+            services.AddFluentValidationAutoValidation();
+            services.AddFluentValidationClientsideAdapters();
+            services.AddValidatorsFromAssembly(typeof(Create).Assembly);
 
             services.AddCors(options =>
             {
