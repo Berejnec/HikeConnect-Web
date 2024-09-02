@@ -6,6 +6,8 @@ import ActivityForm from "../../features/activities/form/ActivityForm";
 import HomePage from "../../features/home/HomePage";
 import NavBar from "./NavBar";
 import ActivityDetails from "../../features/activities/details/ActivityDetails";
+import TestErrors from "../../features/errors/TestError";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const location = useLocation();
@@ -13,6 +15,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer position="bottom-right" hideProgressBar />
       {!isHomePage && <NavBar />}
       {isHomePage && (
         <Routes>
@@ -27,6 +30,7 @@ function App() {
             <Route path="/activities/:id" element={<ActivityDetails />} />
             <Route path="/createActivity" element={<ActivityForm key={location.key} />} />
             <Route path="/manage/:id" element={<ActivityForm key={location.key} />} />
+            <Route path="/errors" element={<TestErrors />} />
           </Routes>
         </Container>
       )}
