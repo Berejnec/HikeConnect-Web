@@ -8,12 +8,16 @@ using AutoMapper;
 using API.Extensions;
 using FluentValidation;
 using API.Middleware;
+using Microsoft.AspNetCore.Identity;
+using Domain;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices(builder.Configuration);
+
+builder.Services.AddIdentityServices(builder.Configuration);
 
 builder.Services.AddValidatorsFromAssemblyContaining<Create>();
 
@@ -57,13 +61,15 @@ app.UseCors(MyAllowSpecificOrigins);
 
 app.Run();
 
-void SeedDatabase()
+async void SeedDatabase()
 {
     using (var scope = app.Services.CreateScope())
         try
         {
             var scopedContext = scope.ServiceProvider.GetRequiredService<DataContext>();
-            DbInitializer.Initialize(scopedContext);
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+            await scopedContext.Database.MigrateAsync();
+            await DbInitializer.InitializeAsync(scopedContext, userManager);
         }
         catch
         {

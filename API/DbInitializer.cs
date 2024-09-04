@@ -3,16 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Microsoft.AspNetCore.Identity;
 using Persistence;
 
 namespace API
 {
     public class DbInitializer
     {
-        public static void Initialize(DataContext dbContext)
+        public static async Task InitializeAsync(DataContext dbContext, UserManager<AppUser> userManager)
         {
             ArgumentNullException.ThrowIfNull(dbContext, nameof(dbContext));
             dbContext.Database.EnsureCreated();
+            if (!userManager.Users.Any())
+            {
+                var users = new List<AppUser>
+        {
+            new AppUser
+            {
+                DisplayName = "Bob",
+                UserName = "bob",
+                Email = "bob@example.com",
+                Bio = "I am Bob. I love coding and coffee."
+            },
+            new AppUser
+            {
+                DisplayName = "Jane",
+                UserName = "jane",
+                Email = "jane@example.com",
+                Bio = "Jane here! Passionate about design and art."
+            },
+            new AppUser
+            {
+                DisplayName = "Adi",
+                UserName = "adi",
+                Email = "adi@example.com",
+                Bio = "Adi, a music enthusiast and traveler."
+            },
+        };
+
+                foreach (var user in users)
+                {
+                    await userManager.CreateAsync(user, "Pa$$w0rd");
+                }
+                dbContext.SaveChanges();
+            }
+
             if (dbContext.Activities.Any()) return;
 
             var activities = new List<Activity>
