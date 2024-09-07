@@ -25,6 +25,7 @@ export default class UserStore {
       store.commonStore.setToken(user.token);
       runInAction(() => (this.user = user));
       if (this.navigate) this.navigate("/activities");
+      store.modalStore.closeModal();
     } catch (error) {
       throw error;
     }
@@ -43,6 +44,18 @@ export default class UserStore {
       runInAction(() => (this.user = user));
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  register = async (creds: UserFormValues) => {
+    try {
+      const user = await agent.Account.register(creds);
+      store.commonStore.setToken(user.token);
+      runInAction(() => (this.user = user));
+      if (this.navigate) this.navigate("/activities");
+      store.modalStore.closeModal();
+    } catch (error) {
+      throw error;
     }
   };
 }

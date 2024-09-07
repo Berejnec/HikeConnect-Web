@@ -12,6 +12,7 @@ import LoginForm from "../../features/users/LoginForm";
 import { useStore } from "../stores/store";
 import { useEffect } from "react";
 import LoadingComponent from "./LoadingComponent";
+import ModalContainer from "../common/modals/ModalContainer";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -33,6 +34,7 @@ function App() {
   return (
     <>
       <ToastContainer position="bottom-right" hideProgressBar />
+      <ModalContainer />
       {!isHomePage && <NavBar />}
       {isHomePage && (
         <Routes>
