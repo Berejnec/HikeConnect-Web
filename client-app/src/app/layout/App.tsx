@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
 import ActivityForm from "../../features/activities/form/ActivityForm";
@@ -8,10 +8,27 @@ import NavBar from "./NavBar";
 import ActivityDetails from "../../features/activities/details/ActivityDetails";
 import TestErrors from "../../features/errors/TestError";
 import { ToastContainer } from "react-toastify";
+import LoginForm from "../../features/users/LoginForm";
+import { useStore } from "../stores/store";
+import { useEffect } from "react";
+import LoadingComponent from "./LoadingComponent";
 
 function App() {
+  const { commonStore, userStore } = useStore();
+  const navigate = useNavigate();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+
+  useEffect(() => {
+    if (commonStore.token) {
+      userStore.getUser().finally(() => commonStore.setAppLoaded());
+    } else {
+      commonStore.setAppLoaded();
+    }
+    userStore.setNavigate(navigate);
+  }, [commonStore, userStore, navigate]);
+
+  if (!commonStore.appLoaded) return <LoadingComponent content="Loading app" />;
 
   return (
     <>
@@ -31,6 +48,7 @@ function App() {
             <Route path="/createActivity" element={<ActivityForm key={location.key} />} />
             <Route path="/manage/:id" element={<ActivityForm key={location.key} />} />
             <Route path="/errors" element={<TestErrors />} />
+            <Route path="/login" element={<LoginForm />} />
           </Routes>
         </Container>
       )}
