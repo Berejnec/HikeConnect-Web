@@ -24,19 +24,35 @@ axios.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
-    const { status } = error.response!;
+    const { data, status, config } = error.response!;
+    const navigate = store.userStore.navigate;
     switch (status) {
       case 400:
-        toast.error("bad request");
+        if (typeof data === "string") {
+          toast.error(data);
+        }
+        if (config.method === "get" && (data as any).errors.hasOwnProperty("id")) {
+          if (navigate) navigate("/not-found");
+        }
+        if ((data as any).errors) {
+          const modalStateErrors = [];
+          for (const key in (data as any).errors) {
+            if ((data as any).errors[key]) {
+              modalStateErrors.push((data as any).errors[key]);
+            }
+          }
+          throw modalStateErrors.flat();
+        }
         break;
       case 401:
-        toast.error("unauthorized");
+        toast.error("Unauthorized");
         break;
       case 404:
-        toast.error("not found");
+        if (navigate) navigate("/not-found");
         break;
       case 500:
-        toast.error("server error");
+        store.commonStore.setServerError(data as any);
+        if (navigate) navigate("/server-error");
         break;
       default:
         break;
