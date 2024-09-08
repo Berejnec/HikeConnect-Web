@@ -72,7 +72,7 @@ async void SeedDatabase()
             var scopedContext = scope.ServiceProvider.GetRequiredService<DataContext>();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
             await scopedContext.Database.MigrateAsync();
-            await DbInitializer.InitializeAsync(scopedContext, userManager);
+            await DbInitializer.SeedData(scopedContext, userManager);
         }
         catch
         {
