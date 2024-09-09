@@ -15,6 +15,7 @@ import LoadingComponent from "./LoadingComponent";
 import ModalContainer from "../common/modals/ModalContainer";
 import NotFound from "../../features/errors/NotFound";
 import ServerError from "../../features/errors/ServerError";
+import ProfilePage from "../../features/profiles/ProfilePage";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -51,6 +52,7 @@ function App() {
             <Route path="/activities/:id" element={<ActivityDetails />} />
             <Route path="/createActivity" element={<ActivityForm key={location.key} />} />
             <Route path="/manage/:id" element={<ActivityForm key={location.key} />} />
+            <Route path="/profiles/:username" element={<ProfilePage />} />
             <Route path="/errors" element={<TestErrors />} />
             <Route path="/server-error" element={<ServerError />} />
             <Route path="/login" element={<LoginForm />} />
