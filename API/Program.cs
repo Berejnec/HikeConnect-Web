@@ -10,6 +10,7 @@ using FluentValidation;
 using API.Middleware;
 using Microsoft.AspNetCore.Identity;
 using Domain;
+using API.SignalR;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -37,6 +38,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseHttpsRedirection();
+
+app.MapHub<ChatHub>("/chat");
 
 var summaries = new[]
 {
