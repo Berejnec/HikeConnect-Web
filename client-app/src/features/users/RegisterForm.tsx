@@ -31,7 +31,7 @@ export default observer(function RegisterForm() {
           <Header as="h2" color="teal" textAlign="center" content="Sign up to Reactivities"></Header>
           <TextInput placeholder={"Display Name"} name={"displayName"} />
           <TextInput placeholder={"Username"} name={"userName"} />
-          <TextInput placeholder={"Email"} name={"email"} />
+          <TextInput placeholder={"Email"} name={"email"} type="email" />
           <TextInput placeholder={"Password"} name={"password"} type="password" />
           <ErrorMessage name="error" render={() => <ValidationErrors errors={errors.error} />} />
           <Button

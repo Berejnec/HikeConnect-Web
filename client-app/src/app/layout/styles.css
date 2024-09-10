@@ -53,3 +53,34 @@ body {
 }
 
 /*end home page styles*/
+
+.dimmed.dimmable > .ui.animating.dimmer,
+.dimmed.dimmable > .ui.visible.dimmer,
+.ui.active.dimmer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ui.modal,
+.ui.active.modal {
+  margin: 0 auto !important;
+  width: 30%;
+  top: auto !important;
+  height: fit-content;
+  left: auto !important;
+  transform-origin: center !important;
+  transition: all ease 0.5s;
+  padding: 1rem;
+
+  @media (1024px < width < 1440px) {
+    width: 50%;
+  }
+
+  @media (768px < width < 1024px) {
+    width: 75%;
+  }
+
+  @media (width < 768px) {
+    width: 90%;
+  }
+}
