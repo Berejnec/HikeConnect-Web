@@ -14,6 +14,7 @@ export default function PhotoWidgetDropzone({ setFiles }: Props) {
     paddingTop: "30px",
     textAlign: "center" as "center",
     height: 200,
+    cursor: "pointer",
   };
   const dzActive = {
     borderColor: "green",
