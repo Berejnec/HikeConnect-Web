@@ -26,14 +26,17 @@ export default observer(function ProfileHeader({ profile }: Props) {
             <Statistic label="Following" value="42" />
           </Statistic.Group>
           <Divider />
-          <Reveal animated="move">
-            <Reveal.Content visible style={{ width: "100%" }}>
-              <Button fluid color="teal" content="Following"></Button>
-            </Reveal.Content>
-            <Reveal.Content hidden style={{ width: "100%" }}>
-              <Button fluid basic color={true ? "red" : "green"} content={true ? "Unfollow" : "Follow"} />
-            </Reveal.Content>
-          </Reveal>
+          {
+            // TODO: Only show this for other users, not for current user
+            <Reveal animated="move">
+              <Reveal.Content visible style={{ width: "100%" }}>
+                <Button fluid color="teal" content="Following"></Button>
+              </Reveal.Content>
+              <Reveal.Content hidden style={{ width: "100%" }}>
+                <Button fluid basic color={true ? "red" : "green"} content={true ? "Unfollow" : "Follow"} />
+              </Reveal.Content>
+            </Reveal>
+          }
         </Grid.Column>
       </Grid>
     </Segment>
