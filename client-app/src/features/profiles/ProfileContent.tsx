@@ -1,5 +1,5 @@
 import React from "react";
-import { Tab, TabPane } from "semantic-ui-react";
+import { Label, Segment, Tab, TabPane } from "semantic-ui-react";
 import ProfilePhotos from "./ProfilePhotos";
 import { Profile } from "../../app/models/profile";
 import { observer } from "mobx-react-lite";
@@ -16,7 +16,16 @@ export default observer(function ProfileContent({ profile }: Props) {
   const panes = [
     {
       menuItem: "About",
-      render: () => <TabPane>About Content</TabPane>,
+      render: () => (
+        <TabPane>
+          <Segment>
+            <Label as="a" color="red" ribbon>
+              In development mode
+            </Label>
+            <p>This section is under construction. Please check back later!</p>
+          </Segment>
+        </TabPane>
+      ),
     },
     {
       menuItem: "Photos",

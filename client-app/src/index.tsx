@@ -9,11 +9,13 @@ import { store, StoreContext } from "./app/stores/store";
 import { BrowserRouter } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.min.css";
 import "react-datepicker/dist/react-datepicker.module.css";
+import ScrollToTop from "./app/layout/ScrollToTop";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <StoreContext.Provider value={store}>
     <BrowserRouter>
+      <ScrollToTop />
       <App />
     </BrowserRouter>
   </StoreContext.Provider>

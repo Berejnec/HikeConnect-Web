@@ -16,6 +16,7 @@ import ModalContainer from "../common/modals/ModalContainer";
 import NotFound from "../../features/errors/NotFound";
 import ServerError from "../../features/errors/ServerError";
 import ProfilePage from "../../features/profiles/ProfilePage";
+import Protected from "./PrivateRoute";
 
 function App() {
   const { commonStore, userStore } = useStore();
@@ -48,12 +49,15 @@ function App() {
       {!isHomePage && (
         <Container style={{ marginTop: isHomePage ? "0" : "7em" }}>
           <Routes>
-            <Route path="/activities" element={<ActivityDashboard />} />
-            <Route path="/activities/:id" element={<ActivityDetails />} />
-            <Route path="/createActivity" element={<ActivityForm key={location.key} />} />
-            <Route path="/manage/:id" element={<ActivityForm key={location.key} />} />
-            <Route path="/profiles/:username" element={<ProfilePage />} />
-            <Route path="/errors" element={<TestErrors />} />
+            <Route element={<Protected />}>
+              <Route path="/activities" element={<ActivityDashboard />} />
+              <Route path="/activities/:id" element={<ActivityDetails />} />
+              <Route path="/createActivity" element={<ActivityForm key={location.key} />} />
+              <Route path="/manage/:id" element={<ActivityForm key={location.key} />} />
+              <Route path="/profiles/:username" element={<ProfilePage />} />
+              <Route path="/errors" element={<TestErrors />} />
+            </Route>
+
             <Route path="/server-error" element={<ServerError />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="*" element={<NotFound />} />
