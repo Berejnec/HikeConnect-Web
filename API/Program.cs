@@ -22,6 +22,8 @@ builder.Services.AddIdentityServices(builder.Configuration);
 
 builder.Services.AddValidatorsFromAssemblyContaining<Create>();
 
+builder.WebHost.UseUrls("http://*:8080");
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
