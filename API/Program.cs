@@ -23,6 +23,10 @@ builder.Services.AddIdentityServices(builder.Configuration);
 builder.Services.AddValidatorsFromAssemblyContaining<Create>();
 
 var app = builder.Build();
+
+app.UseDefaultFiles();
+
+app.UseStaticFiles();
 SeedDatabase();
 // Configure the HTTP request pipeline.
 
@@ -40,6 +44,7 @@ app.UseAuthorization();
 app.UseHttpsRedirection();
 
 app.MapHub<ChatHub>("/chat");
+app.MapFallbackToController("Index", "Fallback");
 
 var summaries = new[]
 {
