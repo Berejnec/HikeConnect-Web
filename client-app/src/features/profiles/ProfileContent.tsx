@@ -6,6 +6,7 @@ import { observer } from "mobx-react-lite";
 import ProfileFollowings from "./ProfileFollowings";
 import { useStore } from "../../app/stores/store";
 import ProfileActivities from "./ProfileActivities";
+import ProfileAbout from "./ProfileAbout";
 
 interface Props {
   profile: Profile;
@@ -16,16 +17,7 @@ export default observer(function ProfileContent({ profile }: Props) {
   const panes = [
     {
       menuItem: "About",
-      render: () => (
-        <TabPane>
-          <Segment>
-            <Label as="a" color="red" ribbon>
-              In development mode
-            </Label>
-            <p>This section is under construction. Please check back later!</p>
-          </Segment>
-        </TabPane>
-      ),
+      render: () => <ProfileAbout />,
     },
     {
       menuItem: "Photos",
