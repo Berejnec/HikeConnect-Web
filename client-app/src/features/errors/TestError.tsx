@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Button, Header, Segment } from "semantic-ui-react";
 import axios from "axios";
+import { useState } from "react";
+import { Button, Header, Segment } from "semantic-ui-react";
 import ValidationErrors from "./ValidationErrors";
 
 export default function TestErrors() {
-  const baseUrl = process.env.REACT_APP_API_URL + "/";
+  const baseUrl = import.meta.env.VITE_API_URL + "/";
   const [errors, setErrors] = useState(null);
 
   function handleNotFound() {
