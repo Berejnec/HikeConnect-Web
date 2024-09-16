@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import { PreviewFile } from "../../models/previewFile";
 import { Header, Icon } from "semantic-ui-react";
+import { PreviewFile } from "../../models/previewFile";
 
 interface Props {
   setFiles: (files: PreviewFile[]) => void;
@@ -12,10 +12,10 @@ export default function PhotoWidgetDropzone({ setFiles }: Props) {
     borderColor: "#eee",
     borderRadius: "5px",
     paddingTop: "30px",
-    textAlign: "center" as "center",
+    textAlign: "center",
     height: 200,
     cursor: "pointer",
-  };
+  } as object;
   const dzActive = {
     borderColor: "green",
   };

@@ -52,7 +52,9 @@ export default observer(function ActivityDetailedChat({ activityId }: Props) {
                         }
                         if (e.key === "Enter" && !e.shiftKey) {
                           e.preventDefault();
-                          isValid && handleSubmit();
+                          if (isValid) {
+                            handleSubmit();
+                          }
                         }
                       }}
                     />

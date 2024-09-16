@@ -4,18 +4,14 @@
   "private": true,
   "dependencies": {
     "@microsoft/signalr": "^8.0.7",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.101",
+    "@types/node": "^22.5.5",
     "@types/react": "^18.3.3",
     "@types/react-calendar": "^4.1.0",
     "@types/react-dom": "^18.3.0",
     "@types/react-infinite-scroller": "^1.2.5",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
-    "date-fns": "^3.6.0",
+    "date-fns": "^4.0.0",
     "formik": "^2.4.6",
     "mobx": "^6.13.1",
     "mobx-react-lite": "^4.0.7",
@@ -26,22 +22,20 @@
     "react-dom": "^18.3.1",
     "react-dropzone": "^14.2.3",
     "react-infinite-scroller": "^1.2.6",
-    "react-router-dom": "^6.25.1",
-    "react-scripts": "5.0.1",
+    "react-router-dom": "^6.6.2",
     "react-toastify": "^10.0.5",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^3.0.0-beta.0",
-    "typescript": "^4.9.5",
+    "typescript": "^5.6.0",
     "uuid": "^10.0.0",
-    "web-vitals": "^2.1.4",
     "yup": "^1.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "postbuild": "move build ../API/wwwroot",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -62,8 +56,16 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.3.3",
+    "@types/react-calendar": "^4.1.0",
+    "@types/react-datepicker": "^4.8.0",
     "@types/uuid": "^10.0.0",
-    "@types/yup": "^0.32.0"
+    "@types/yup": "^0.32.0",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "eslint": "^8.47.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.12",
+    "rimraf": "^6.0.1",
+    "vite": "^5.4.5"
   }
 }

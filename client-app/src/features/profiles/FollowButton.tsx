@@ -1,7 +1,7 @@
-import React, { SyntheticEvent } from "react";
+import { observer } from "mobx-react-lite";
+import { SyntheticEvent } from "react";
 import { Button, Reveal } from "semantic-ui-react";
 import { Profile } from "../../app/models/profile";
-import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 
 interface Props {
@@ -15,7 +15,11 @@ export default observer(function FollowButton({ profile }: Props) {
 
   function handleFollow(e: SyntheticEvent, username: string) {
     e.preventDefault();
-    profile.following ? updateFollowing(username, false) : updateFollowing(username, true);
+    if (profile.following) {
+      updateFollowing(username, false);
+    } else {
+      updateFollowing(username, true);
+    }
   }
 
   return (

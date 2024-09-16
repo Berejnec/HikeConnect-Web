@@ -1,9 +1,8 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { Button, Grid, Header } from "semantic-ui-react";
-import PhotoWidgetDropzone from "./PhotoWidgetDropzone";
 import { PreviewFile } from "../../models/previewFile";
 import PhotoWidgetCropper from "./PhotoWidgetCropper";
+import PhotoWidgetDropzone from "./PhotoWidgetDropzone";
 
 interface Props {
   loading: boolean;
@@ -25,7 +24,7 @@ export default function PhotoUploadWidget({ loading, uploadPhoto }: Props) {
 
   useEffect(() => {
     return () => {
-      files.forEach((file: any) => URL.revokeObjectURL(file.preview));
+      files.forEach((file: PreviewFile) => URL.revokeObjectURL(file.preview ?? ""));
     };
   }, [files]);
   return (

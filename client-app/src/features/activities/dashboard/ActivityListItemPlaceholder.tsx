@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { Segment, Button, Placeholder } from "semantic-ui-react";
+import { Fragment } from "react";
+import { Button, Placeholder, Segment } from "semantic-ui-react";
 
 export default function ActivityListItemPlaceholder() {
   return (

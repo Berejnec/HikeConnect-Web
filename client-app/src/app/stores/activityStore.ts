@@ -1,10 +1,10 @@
+import { format } from "date-fns";
 import { makeAutoObservable, reaction, runInAction } from "mobx";
 import agent from "../api/agent";
 import { Activity, ActivityFormValues } from "../models/activity";
-import { format } from "date-fns";
-import { store } from "./store";
-import { Profile } from "../models/profile";
 import { Pagination, PagingParams } from "../models/pagination";
+import { Profile } from "../models/profile";
+import { store } from "./store";
 
 export default class ActivityStore {
   activityRegistry = new Map<string, Activity>();
@@ -59,7 +59,7 @@ export default class ActivityStore {
 
   setPredicate = (predicate: string, value: string | Date) => {
     const resetPredicate = () => {
-      this.predicate.forEach((value, key) => {
+      this.predicate.forEach((_, key) => {
         if (key !== "startDate") this.predicate.delete(key);
       });
     };
@@ -171,7 +171,7 @@ export default class ActivityStore {
       await agent.Activities.update(activity);
       runInAction(() => {
         if (activity?.id) {
-          let updatedActivity = {
+          const updatedActivity = {
             ...this.getActivity(activity.id),
             ...activity,
           };
@@ -248,7 +248,11 @@ export default class ActivityStore {
     this.activityRegistry.forEach((activity) => {
       activity.attendees.forEach((attendee) => {
         if (attendee.username === username) {
-          attendee.following ? attendee.followersCount-- : attendee.followersCount++;
+          if (attendee.following) {
+            attendee.followersCount--;
+          } else {
+            attendee.followersCount++;
+          }
           attendee.following = !attendee.following;
         }
       });

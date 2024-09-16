@@ -30,7 +30,7 @@ export default class ProfileStore {
     );
   }
 
-  setActiveTab = (activeTab: any) => {
+  setActiveTab = (activeTab: number) => {
     this.activeTab = activeTab;
   };
 
@@ -130,15 +130,27 @@ export default class ProfileStore {
           this.profile.username !== store.userStore.user?.userName &&
           this.profile.username === username
         ) {
-          following ? this.profile.followersCount++ : this.profile.followersCount--;
+          if (following) {
+            this.profile.followersCount++;
+          } else {
+            this.profile.followersCount--;
+          }
           this.profile.following = !this.profile.following;
         }
         if (this.profile && this.profile.username === store.userStore.user?.userName) {
-          following ? this.profile.followingCount++ : this.profile.followingCount--;
+          if (following) {
+            this.profile.followingCount++;
+          } else {
+            this.profile.followingCount--;
+          }
         }
         this.followings.forEach((profile) => {
           if (profile.username === username) {
-            profile.following ? profile.followersCount-- : profile.followersCount++;
+            if (profile.following) {
+              profile.followersCount--;
+            } else {
+              profile.followersCount++;
+            }
             profile.following = !profile.following;
           }
         });
