@@ -41,7 +41,7 @@ export default observer(function ProfileContent({ profile }: Props) {
       menuPosition="right"
       panes={panes}
       style={{ paddingTop: 30 }}
-      onTabChange={(e, data) => profileStore.setActiveTab(data.activeIndex)}
+      onTabChange={(_, data) => profileStore.setActiveTab(data.activeIndex as number)}
     />
   );
 });
