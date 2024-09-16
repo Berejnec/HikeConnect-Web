@@ -34,14 +34,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-else
-{
-    app.Use(async (context, next) =>
-    {
-        context.Response.Headers.Add("Strict-Transport-Security", "max-age=31536000");
-        await next.Invoke();
-    });
-}
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -53,26 +45,6 @@ app.UseHttpsRedirection();
 
 app.MapHub<ChatHub>("/chat");
 app.MapFallbackToController("Index", "Fallback");
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
 
 app.MapControllers();
 
@@ -94,9 +66,4 @@ async void SeedDatabase()
         {
             throw;
         }
-}
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
