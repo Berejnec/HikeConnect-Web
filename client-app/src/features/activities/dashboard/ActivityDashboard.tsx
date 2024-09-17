@@ -31,6 +31,7 @@ export default observer(function ActivityDashboard() {
             <>
               <ActivityListItemPlaceholder />
               <ActivityListItemPlaceholder />
+              <ActivityListItemPlaceholder />
             </>
           ) : (
             <InfiniteScroll
