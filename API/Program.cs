@@ -29,10 +29,32 @@ SeedDatabase();
 
 app.UseMiddleware<ExceptionMiddleware>();
 
+app.UseXContentTypeOptions();
+app.UseReferrerPolicy(options => options.NoReferrer());
+app.UseXXssProtection(options => options.EnabledWithBlockMode());
+app.UseXfo(options => options.Deny());
+app.UseCsp(options => options
+    .BlockAllMixedContent()
+    .StyleSources(s => s.Self().CustomSources("https://fonts.googleapis.com"))
+    .FontSources(s => s.Self().CustomSources("https://fonts.gstatic.com", "data:"))
+    .FormActions(s => s.Self())
+    .FrameAncestors(s => s.Self())
+    .ImageSources(s => s.Self().CustomSources("https://res.cloudinary.com", "blob:"))
+    .ScriptSources(s => s.Self())
+);
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+else
+{
+    app.Use(async (context, next) =>
+    {
+        context.Response.Headers.Append("Strict-Transport-Security", "max-age=31536000");
+        await next.Invoke();
+    });
 }
 
 app.UseCors(MyAllowSpecificOrigins);
