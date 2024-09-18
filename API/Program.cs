@@ -35,6 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(MyAllowSpecificOrigins);
+
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -43,12 +45,9 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
+app.MapControllers();
 app.MapHub<ChatHub>("/chat");
 app.MapFallbackToController("Index", "Fallback");
-
-app.MapControllers();
-
-app.UseCors(MyAllowSpecificOrigins);
 
 app.Run();
 
