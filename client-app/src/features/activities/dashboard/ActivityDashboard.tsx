@@ -26,7 +26,7 @@ export default observer(function ActivityDashboard() {
   return (
     <>
       <Grid>
-        <Grid.Column width="10">
+        <Grid.Column className="activities-section" computer={10} tablet={16} mobile={16}>
           {activityStore.loadingInitial && !loadingNext ? (
             <>
               <ActivityListItemPlaceholder />
@@ -45,10 +45,10 @@ export default observer(function ActivityDashboard() {
             </InfiniteScroll>
           )}
         </Grid.Column>
-        <Grid.Column width="6">
+        <Grid.Column className="filters-section" computer={6} tablet={16} mobile={16}>
           <ActivityFilters />
         </Grid.Column>
-        <Grid.Column width={10}>
+        <Grid.Column className="loading-section" computer={10} tablet={16} mobile={16}>
           <Loader active={loadingNext} />
         </Grid.Column>
       </Grid>

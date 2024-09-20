@@ -84,3 +84,39 @@ body {
     width: 90%;
   }
 }
+
+.activities-section {
+  order: 1;
+
+  @media (width < 992px) {
+    order: 2;
+  }
+}
+
+.filters-section {
+  order: 2;
+
+  @media (width < 992px) {
+    order: 1;
+    margin-top: 2em !important;
+  }
+}
+
+.loading-section {
+  order: 3;
+  margin-top: 1em !important;
+}
+
+.menu-item {
+  @media (width < 768px) {
+    display: none !important;
+  }
+}
+
+.hamburger-item {
+  display: none !important;
+
+  @media (width < 768px) {
+    display: block !important;
+  }
+}
