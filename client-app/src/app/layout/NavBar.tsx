@@ -21,7 +21,7 @@ export default observer(function NavBar() {
         <Container>
           <Menu.Item as={NavLink} to="/" header className="d-flex gap-3">
             <img src="/assets/logo.png" alt="logo" />
-            Reactivities
+            HikeConnect
           </Menu.Item>
 
           <Menu.Item as={NavLink} to="/activities" name="Activities" className="menu-item" />
