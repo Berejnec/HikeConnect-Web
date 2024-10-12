@@ -47,11 +47,11 @@ function App() {
         </Routes>
       )}
       {!isHomePage && (
-        <Container style={{ marginTop: isHomePage ? "0" : "7em" }}>
+        <Container style={{ marginTop: isHomePage ? "0" : "6em" }}>
           <Routes>
             <Route element={<Protected />}>
-              <Route path="/activities" element={<ActivityDashboard />} />
-              <Route path="/activities/:id" element={<ActivityDetails />} />
+              <Route path="/events" element={<ActivityDashboard />} />
+              <Route path="/events/:id" element={<ActivityDetails />} />
               <Route path="/createActivity" element={<ActivityForm key={location.key} />} />
               <Route path="/manage/:id" element={<ActivityForm key={location.key} />} />
               <Route path="/profiles/:username" element={<ProfilePage />} />

@@ -46,11 +46,11 @@ export default observer(function ActivityForm() {
         id: uuid(),
       };
       createActivity(newActivity).then(() => {
-        navigate("/activities/" + newActivity.id);
+        navigate("/events/" + newActivity.id);
       });
     } else {
       updateActivity(activity).then(() => {
-        navigate("/activities/" + activity.id);
+        navigate("/events/" + activity.id);
       });
     }
   }
@@ -91,7 +91,7 @@ export default observer(function ActivityForm() {
               type="submit"
               content="Submit"
             ></Button>
-            <Button as={Link} to={`/activities/${activity.id}`} floated="right" content="Cancel" type="button"></Button>
+            <Button as={Link} to={`/events/${activity.id}`} floated="right" content="Cancel" type="button"></Button>
           </Form>
         )}
       </Formik>

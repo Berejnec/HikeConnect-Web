@@ -12,7 +12,7 @@ export default observer(function ActivityList() {
     <>
       {groupedActivities.map(([date, activities]) => (
         <Fragment key={date}>
-          <Header sub color="teal">
+          <Header sub size="medium" style={{ color: "#228B22" }}>
             {date}
           </Header>
           {activities.map((activity) => (

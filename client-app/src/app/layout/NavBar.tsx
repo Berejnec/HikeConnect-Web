@@ -19,15 +19,15 @@ export default observer(function NavBar() {
     <>
       <Menu inverted fixed="top" className="shadow" size="large">
         <Container>
-          <Menu.Item as={NavLink} to="/" header className="d-flex gap-3">
-            <img src="/assets/logo.png" alt="logo" />
+          <Menu.Item as={NavLink} to="/" header>
+            <img src="/assets/logo.png" alt="logo" style={{ marginRight: 10 }} />
             HikeConnect
           </Menu.Item>
 
-          <Menu.Item as={NavLink} to="/activities" name="Activities" className="menu-item" />
+          <Menu.Item as={NavLink} to="/events" name="Events" className="menu-item" />
           {import.meta.env.DEV && <Menu.Item as={NavLink} to="/errors" name="Errors" className="menu-item" />}
           <Menu.Item className="menu-item">
-            <Button as={NavLink} to="/createActivity" positive content="Create Activity" />
+            <Button as={NavLink} to="/createActivity" white content="Create Activity" />
           </Menu.Item>
           <Menu.Item position="right" className="menu-item">
             <Image src={user?.image || "/assets/user.png"} avatar spaced="right" />
@@ -55,15 +55,15 @@ export default observer(function NavBar() {
         inverted
       >
         <Menu.Item as={NavLink} to="/" header onClick={() => setSidebarOpen(false)}>
-          <img src="/assets/logo.png" alt="logo" />
-          Reactivities
+          <img src="/assets/logo.png" alt="logo" style={{ height: "5rem", marginBottom: "1rem" }} />
+          HikeConnect
         </Menu.Item>
-        <Menu.Item as={NavLink} to="/activities" name="Activities" onClick={() => setSidebarOpen(false)} />
+        <Menu.Item as={NavLink} to="/events" name="Events" onClick={() => setSidebarOpen(false)} />
         {import.meta.env.DEV && (
           <Menu.Item as={NavLink} to="/errors" name="Errors" onClick={() => setSidebarOpen(false)} />
         )}
         <Menu.Item onClick={() => setSidebarOpen(false)}>
-          <Button as={NavLink} to="/createActivity" positive content="Create Activity" />
+          <Button as={NavLink} to="/createActivity" white content="Create Activity" />
         </Menu.Item>
         <Menu.Item>
           <Image src={user?.image || "/assets/user.png"} avatar spaced="right" />

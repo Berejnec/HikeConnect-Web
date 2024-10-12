@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { Grid, Loader } from "semantic-ui-react";
+import { Grid, Header, Loader } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import ActivityList from "./ActivityList";
 import ActivityFilters from "./ActivityFilters";
@@ -25,6 +25,7 @@ export default observer(function ActivityDashboard() {
 
   return (
     <>
+      <Header as={"h1"} content={"HikeConnect Events"} />
       <Grid>
         <Grid.Column className="activities-section" computer={10} tablet={16} mobile={16}>
           {activityStore.loadingInitial && !loadingNext ? (
