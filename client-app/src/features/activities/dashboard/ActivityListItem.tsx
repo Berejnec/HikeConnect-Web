@@ -23,7 +23,7 @@ export default function ActivityListItem({ activity }: Props) {
               src={activity.host?.image || "/assets/user.png"}
             />
             <Item.Content>
-              <Item.Header as={Link} to={`/activities/${activity.id}`}>
+              <Item.Header as={Link} to={`/events/${activity.id}`}>
                 {activity.title}
               </Item.Header>
               <Item.Description>
@@ -58,7 +58,7 @@ export default function ActivityListItem({ activity }: Props) {
       </Segment>
       <Segment clearing>
         <span>{activity.description}</span>
-        <Button as={Link} to={`/activities/${activity.id}`} floated="right" content="View" color="teal" />
+        <Button as={Link} to={`/events/${activity.id}`} className="primary" floated="right" content="View" />
       </Segment>
     </Segment.Group>
   );

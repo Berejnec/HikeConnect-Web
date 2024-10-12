@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Card, Grid, Header, Image, Tab, TabPane, TabProps } from "semantic-ui-react";
 import { UserActivity } from "../../app/models/profile";
 import { useStore } from "../../app/stores/store";
+import LoadingComponent from "../../app/layout/LoadingComponent";
 
 const panes = [
   { menuItem: "Future Events", pane: { key: "future" } },
@@ -26,12 +27,13 @@ export default observer(function ProfileActivities() {
   };
 
   return (
-    <TabPane loading={loadingActivities}>
+    <TabPane>
       <Grid>
         <Grid.Column width={16}>
           <Header floated="left" icon="calendar" content={"Activities"} />
         </Grid.Column>
         <Grid.Column width={16}>
+          {loadingActivities && <LoadingComponent content="Loading events..." />}
           <Tab
             panes={panes}
             menu={{ secondary: true, pointing: true }}
@@ -40,7 +42,7 @@ export default observer(function ProfileActivities() {
           <br />
           <Card.Group itemsPerRow={4}>
             {userActivities.map((activity: UserActivity) => (
-              <Card as={Link} to={`/activities/${activity.id}`} key={activity.id}>
+              <Card as={Link} to={`/events/${activity.id}`} key={activity.id}>
                 <Image
                   src={`/assets/categoryImages/${activity.category}.jpg`}
                   style={{ minHeight: 100, objectFit: "cover" }}
