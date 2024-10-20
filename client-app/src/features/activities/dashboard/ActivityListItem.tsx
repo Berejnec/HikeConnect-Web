@@ -59,6 +59,9 @@ export default function ActivityListItem({ activity }: Props) {
       <Segment clearing>
         <span>{activity.description}</span>
         <Button as={Link} to={`/events/${activity.id}`} className="primary" floated="right" content="View" />
+        {/* <Button asChild className="bg-primary text-white hover:bg-primary-dark hover:text-white p-5 font-bold text-lg">
+          <Link to={`/events/${activity.id}`}>View</Link>
+        </Button> */}
       </Segment>
     </Segment.Group>
   );
