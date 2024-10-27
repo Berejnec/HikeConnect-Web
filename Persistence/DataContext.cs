@@ -19,6 +19,7 @@ namespace Persistence
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<UserFollowing> UserFollowings { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -40,6 +41,11 @@ namespace Persistence
             builder.Entity<Comment>()
                 .HasOne(a => a.Activity)
                 .WithMany(c => c.Comments)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Review>()
+                .HasOne(a => a.Activity)
+                .WithMany(r => r.Reviews)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<UserFollowing>(b =>
