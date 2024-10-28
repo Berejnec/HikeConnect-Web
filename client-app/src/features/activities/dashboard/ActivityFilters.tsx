@@ -1,5 +1,4 @@
 import { observer } from "mobx-react-lite";
-// import Calendar from "react-calendar";
 import { Header, Menu } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { Calendar } from "@/components/ui/calendar";
@@ -10,26 +9,34 @@ export default observer(function ActivityFilters() {
   } = useStore();
   return (
     <>
-      <Menu vertical size="large" style={{ width: "100%", marginTop: 29 }} className="border">
-        <Header icon="filter" attached="top" content="Filters"></Header>
-        <Menu.Item
-          content="All Events"
-          active={predicate.has("all")}
-          onClick={() => setPredicate("all", "true")}
-        ></Menu.Item>
-        <Menu.Item
-          content="I'm going"
-          active={predicate.has("isGoing")}
-          onClick={() => setPredicate("isGoing", "true")}
-        ></Menu.Item>
-        <Menu.Item
-          content="I'm hosting"
-          active={predicate.has("isHost")}
-          onClick={() => setPredicate("isHost", "true")}
-        ></Menu.Item>
-      </Menu>
-      <Header></Header>
-      <div className="w-full bg-white rounded-md">
+      <div
+        className="border rounded-md shadow-lg"
+        style={{
+          marginTop: 28,
+          borderTop: "2px solid hsl(var(--primary))",
+        }}
+      >
+        <Menu vertical size="large" style={{ width: "100%" }} className="border">
+          <Header icon="filter" attached="top" content="Filters"></Header>
+          <Menu.Item
+            content="All Events"
+            active={predicate.has("all")}
+            onClick={() => setPredicate("all", "true")}
+          ></Menu.Item>
+          <Menu.Item
+            content="I'm going"
+            active={predicate.has("isGoing")}
+            onClick={() => setPredicate("isGoing", "true")}
+          ></Menu.Item>
+          <Menu.Item
+            content="I'm hosting"
+            active={predicate.has("isHost")}
+            onClick={() => setPredicate("isHost", "true")}
+          ></Menu.Item>
+        </Menu>
+      </div>
+
+      <div className="w-full bg-white rounded-md mt-5">
         <Calendar
           mode="single"
           selected={predicate.get("startDate") || new Date()}
