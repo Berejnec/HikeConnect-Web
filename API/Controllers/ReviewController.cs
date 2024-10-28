@@ -15,5 +15,11 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new Create.Command { Review = review, ActivityId = activityId }));
         }
+
+        [HttpGet("{activityId}")]
+        public async Task<IActionResult> GetReviews(Guid activityId)
+        {
+            return HandleResult(await Mediator.Send(new List.Query { ActivityId = activityId }));
+        }
     }
 }
