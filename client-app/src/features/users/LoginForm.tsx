@@ -15,7 +15,7 @@ export default observer(function LoginForm() {
     >
       {({ handleSubmit, isSubmitting, errors }) => (
         <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
-          <Header as="h2" color="teal" textAlign="center" content="Login to Reactivities"></Header>
+          <Header as="h2" color="teal" textAlign="center" content="Login to HikeConnect"></Header>
           <TextInput placeholder={"Email"} name={"email"} />
           <TextInput placeholder={"Password"} name={"password"} type="password" />
           <ErrorMessage

@@ -11,7 +11,7 @@ export default observer(function ActivityDetailedSidebar({ activity: { attendees
   if (!attendees) return null;
   return (
     <>
-      <Segment textAlign="center" style={{ border: "none" }} attached="top" secondary inverted color="teal">
+      <Segment textAlign="center" style={{ border: "none" }} attached="top" secondary inverted color="green">
         {attendees.length} {attendees.length === 1 ? "Person" : "People"} Going
       </Segment>
       <Segment attached>

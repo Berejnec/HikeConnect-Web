@@ -21,8 +21,8 @@ export default observer(function HomePage() {
           </>
         ) : (
           <>
-            <Button onClick={() => modalStore.openModal(<LoginForm />)} size="huge" inverted content="Login!" />
-            <Button onClick={() => modalStore.openModal(<RegisterForm />)} size="huge" inverted content="Register!" />
+            <Button onClick={() => modalStore.openModal(<LoginForm />)} size="huge" inverted content="Login" />
+            <Button onClick={() => modalStore.openModal(<RegisterForm />)} size="huge" inverted content="Register" />
           </>
         )}
       </Container>

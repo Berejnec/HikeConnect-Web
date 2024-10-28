@@ -27,7 +27,7 @@ export default observer(function NavBar() {
           <Menu.Item as={NavLink} to="/events" name="Events" className="menu-item" />
           {import.meta.env.DEV && <Menu.Item as={NavLink} to="/errors" name="Errors" className="menu-item" />}
           <Menu.Item className="menu-item">
-            <Button as={NavLink} to="/createActivity" white content="Create Activity" />
+            <Button as={NavLink} to="/createActivity" content="Create Event" />
           </Menu.Item>
           <Menu.Item position="right" className="menu-item">
             <Image src={user?.image || "/assets/user.png"} avatar spaced="right" />
@@ -50,9 +50,9 @@ export default observer(function NavBar() {
         animation="overlay"
         direction="left"
         onHide={() => setSidebarOpen(false)}
-        vertical
+        vertical={true}
         visible={sidebarOpen}
-        inverted
+        inverted={true}
       >
         <Menu.Item as={NavLink} to="/" header onClick={() => setSidebarOpen(false)}>
           <img src="/assets/logo.png" alt="logo" style={{ height: "5rem", marginBottom: "1rem" }} />
@@ -62,8 +62,8 @@ export default observer(function NavBar() {
         {import.meta.env.DEV && (
           <Menu.Item as={NavLink} to="/errors" name="Errors" onClick={() => setSidebarOpen(false)} />
         )}
-        <Menu.Item onClick={() => setSidebarOpen(false)}>
-          <Button as={NavLink} to="/createActivity" white content="Create Activity" />
+        <Menu.Item as={NavLink} onClick={() => setSidebarOpen(false)}>
+          <Button to="/createActivity" content="Create Event" />
         </Menu.Item>
         <Menu.Item>
           <Image src={user?.image || "/assets/user.png"} avatar spaced="right" />

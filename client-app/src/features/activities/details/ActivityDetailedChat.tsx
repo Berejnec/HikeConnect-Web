@@ -25,7 +25,7 @@ export default observer(function ActivityDetailedChat({ activityId }: Props) {
   }, [commentStore, activityId]);
   return (
     <>
-      <Segment textAlign="center" attached="top" inverted color="teal" style={{ border: "none" }}>
+      <Segment textAlign="center" attached="top" inverted color="green" style={{ border: "none" }}>
         <Header>Chat about this event</Header>
       </Segment>
       <Segment attached clearing>

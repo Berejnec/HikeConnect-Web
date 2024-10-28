@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Activities;
 using Application.Comments;
+using Application.Reviews;
 using AutoMapper;
 using Domain;
 
@@ -38,6 +39,11 @@ namespace Application.Core
                 .ForMember(d => d.Username, o => o.MapFrom(s => s.Author.UserName))
                 .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.Author.DisplayName))
                 .ForMember(d => d.Image, o => o.MapFrom(s => s.Author.Photos.FirstOrDefault(p => p.IsMain).Url));
+
+            CreateMap<Review, ReviewDto>()
+            .ForMember(d => d.Username, o => o.MapFrom(s => s.Author.UserName))
+            .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.Author.DisplayName))
+            .ForMember(d => d.Image, o => o.MapFrom(s => s.Author.Photos.FirstOrDefault(p => p.IsMain).Url));
 
             CreateMap<ActivityAttendee, Profiles.UserActivityDto>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Activity.Id))
